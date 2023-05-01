@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Edición de Habitaciones</h2>
+
+   
+    <form action="{% url 'EditarHabitacion' habitacion.id %}" method="POST"> {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type='submit'>
+            Actualizar
+        </button>
+
+        <button>
+            <a href= {% url 'ListaHabitacion' %}></a>
+            Atrás
+        </button>
+
+    </form>
+
+    
+
+{% endblock contenido_cambio %}
+    

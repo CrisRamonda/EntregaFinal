@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Crear nueva habitación</h2>
+
+    {% comment %} <h4>
+        {{ registro_exitoso }}
+        {{ registro_fallido }}
+    </h4> {% endcomment %}
+
+    <form action="{% url 'CrearHabitacion' %}" method="POST"> {% csrf_token %}
+
+        {{ form.as_p }}
+        
+        <button type="submit">Enviar</button>
+
+
+    </form>
+    
+{% endblock contenido_cambio %}
+    

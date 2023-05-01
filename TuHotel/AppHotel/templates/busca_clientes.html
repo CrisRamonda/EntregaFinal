@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Busqueda de Clientes</h2>
+    
+    <form action="{% url 'ClienteBuscado' %}" method="GET"> {% csrf_token %}
+
+        <p>Nombre: <input type="text" name = 'nombre' id='nombre'> </p>
+        
+        <button type="submit">Buscar</button>
+
+
+    </form>
+
+    {% comment %} {% for cliente in lista_clientes  %}
+        <li>
+            {{cliente.nombre}}
+        </li>
+    {% endfor %} {% endcomment %}
+
+{% endblock contenido_cambio %}
+    

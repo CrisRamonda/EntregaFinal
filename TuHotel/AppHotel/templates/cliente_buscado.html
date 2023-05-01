@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+
+    
+    <p>{{mensaje}}</p> 
+   
+    {% if cliente %}
+
+    <h2>Los datos del cliente que buscaste: </h2>
+        <p>Nombre: {{ cliente.nombre }}</p>   
+        <p>Documento: {{ cliente.documento }}</p>   
+        <p>Email: {{ cliente.email }}</p>
+    
+    {% else %}
+
+        <p>No hay clientes con ese nombre</p>  
+
+    {% endif %}
+       
+   
+    
+{% endblock contenido_cambio %}
+     

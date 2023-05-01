@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Edición de Clientes</h2>
+
+   
+    <form action="{% url 'EditarClientes' id %}" method="POST"> {% csrf_token %}
+
+        {{ miFormulario.as_p }}
+
+        <button type='submit'>
+            Actualizar
+        </button>
+
+    </form>
+
+    
+
+{% endblock contenido_cambio %}
+    

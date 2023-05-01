@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Detalle de la habitación</h2>
+    <p>Numero: {{ numero_habitacion.numero }} </p>
+    <p>Tipo: {{ numero_habitacion.tipo }} </p>
+    <p>Disponible: 
+    
+    
+    {% if numero_habitacion.disponible %}
+        Sí
+    {% else %}
+        No
+    {% endif %}
+        
+    </p>
+    
+
+
+    <button>
+        <a href= {% url 'ListaHabitacion' %}>Atrás</a>
+    </button>
+        
+{% endblock contenido_cambio %}
+    

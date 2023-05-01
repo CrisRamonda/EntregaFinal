@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Registro de clientes</h2>
+
+    <h4>
+        {{ registro_exitoso }}
+        {{ registro_fallido }}
+    </h4>
+
+    <form action="{% url 'RegistroClientes' %}" method="POST"> {% csrf_token %}
+
+        {{ miFormulario.as_p }}
+        
+        <button type="submit">Enviar</button>
+
+
+    </form>
+    
+{% endblock contenido_cambio %}
+    

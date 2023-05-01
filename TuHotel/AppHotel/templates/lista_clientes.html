@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Lista de Clientes</h2>
+
+    <h5>
+        {{ mensaje }}
+
+        {{ edicion_exitosa }}
+        {{ edicion_fallida }}
+    </h5>
+    
+     {% for cliente in lista_clientes  %}
+        <li>
+            {{cliente.nombre}}
+        </li>
+        <div>
+            <form  action= "{% url 'EliminaCliente' cliente.id %}" method='POST'>{% csrf_token %}
+                <button  type="submit"> 
+                    Eliminar 
+                </button>
+            </form>
+
+            <button >
+                <a href="{% url 'EditarClientes' cliente.id %}"> </a>
+                Editar
+            </button>
+
+        </div>
+
+    {% endfor %} 
+
+{% endblock contenido_cambio %}
+    

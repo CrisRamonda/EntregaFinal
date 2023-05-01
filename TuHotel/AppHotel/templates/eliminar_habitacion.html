@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Eliminar Habitación</h2>
+
+    <p>
+        ¿Confirma que desea eliminar la habitación {{ habitacion.numero }}?
+    </p>
+   
+    <form method="POST"> {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type='submit'>
+            Confirmar
+        </button>
+        <button type='submit'>
+            <a href="{% url 'ListaHabitacion' %}">Cancelar</a>
+        </button>
+
+    </form>
+    
+
+{% endblock contenido_cambio %}
+    
