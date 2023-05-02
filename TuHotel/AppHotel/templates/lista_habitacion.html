@@ -11,7 +11,7 @@
 
     {% for habitacion in habitaciones  %}
         <li>
-            <a href="{% url 'DetalleHabitacion' habitacion.id %}"> {{ habitacion.numero }} </a>
+            <a href="{% url 'DetalleHabitacion' habitacion.id %}">Habitación {{ habitacion.numero }} </a>
         </li>
         <div>
             

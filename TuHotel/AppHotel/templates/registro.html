@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2> Crear Nuevo Usuario </h2>
+
+    <h6>
+        {{ mensaje }}
+    </h6> 
+
+    <form action="" method="POST"> {% csrf_token %}
+
+        {{ miFormulario.as_p }}
+        
+        <button type="submit">Crear Usuario</button>
+
+
+    </form>
+    
+{% endblock contenido_cambio %}
+    

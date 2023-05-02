@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Edición de Usuarios</h2>
+
+    <h5>
+        {{ edicion_exitosa }}
+        {{ edicion_fallida }}
+        {% for error in fields_error %}
+            <li>{{ error }}</li>
+        {% endfor %}
+          
+    </h5> <br>
+
+    <form action="" method="POST"> {% csrf_token %}
+
+        {{ miFormulario.as_p }}
+
+        <button type='submit'>
+            Actualizar
+        </button>
+
+    </form>
+    
+ 
+
+{% endblock contenido_cambio %}
+    

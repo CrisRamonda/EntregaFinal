@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2> Iniciar Sesión </h2>
+
+    <h6>
+        {{ mensaje }}
+    </h6> 
+
+    <form action="" method="POST"> {% csrf_token %}
+
+        {{ miFormulario.as_p }}
+        
+        <button type="submit">Iniciar Sesión</button>
+        
+    </form>
+    <button> <a href="{% url 'Registrar' %}">Crear Usuario</a></button>
+
+    
+    {% if user.is_authenticated %}
+    <button> <a href="{% url 'EditarUsuario' %}">Editar Usuario</a></button>
+    {% endif %}
+        
+    
+
+    
+{% endblock contenido_cambio %}
