@@ -10,9 +10,15 @@
         <p>Nombre: <input type="text" name = 'nombre' id='nombre'> </p>
         
         <button type="submit">Buscar</button>
-
-
+   
     </form>
+
+    
+    <a href="{% url 'ListaClientes' %}">
+        <button>Atrás</button>
+    </a>
+    
+    
 
     {% comment %} {% for cliente in lista_clientes  %}
         <li>

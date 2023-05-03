@@ -11,7 +11,17 @@
         {{ edicion_exitosa }}
         {{ edicion_fallida }}
     </h5>
+
     
+    <a href="{% url 'RegistroClientes'  %}">
+        <button>Registrar Cliente</button>
+    </a> 
+    
+    <a href="{% url 'BuscaCliente'  %}">
+        <button>Buscar Cliente</button>
+    </a> 
+    
+
      {% for cliente in lista_clientes  %}
         <li>
             {{cliente.nombre}}
@@ -23,10 +33,11 @@
                 </button>
             </form>
 
-            <button >
-                <a href="{% url 'EditarClientes' cliente.id %}">Editar </a>
-                
-            </button>
+            
+            <a href="{% url 'EditarClientes' cliente.id %}">
+                <button>Editar</button>
+            </a>
+            
 
         </div>
 

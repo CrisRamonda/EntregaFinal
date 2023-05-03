@@ -2,21 +2,30 @@
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
         <a class="navbar-brand" href= {% url 'Inicio' %} >Inicio</a>
-        <a class="navbar-brand" href= {% url 'RegistroClientes' %} >Registrar Cliente</a>
-        <a class="navbar-brand" href= {% url 'BuscaCliente' %} >Buscar Clientes</a>
-        <a class="navbar-brand" href= {% url 'ListaClientes' %} >Lista Clientes</a>
+        <!-- <a class="navbar-brand" href= {% url 'RegistroClientes' %} >Registrar Cliente</a> -->
+        <!-- <a class="navbar-brand" href= {% url 'BuscaCliente' %} >Buscar Clientes</a> -->
+        <a class="navbar-brand" href= {% url 'ListaClientes' %} >Clientes</a>
         <a class="navbar-brand" href= {% url 'ListaHabitacion' %} >Habitaciones</a>
-        <a class="navbar-brand" href= {% url 'RegistroReservas' %} >Registrar Reserva</a>
-        <a class="navbar-brand" href= {% url 'VerReservas' %} >Buscar Reservas</a>
+        <a class="navbar-brand" href= {% url 'ListaReservas' %} >Reservas</a>
+        <!-- <a class="navbar-brand" href= {% url 'RegistroReservas' %} >Registrar Reserva</a> -->
+        <!-- <a class="navbar-brand" href= {% url 'BuscarReservas' %} >Buscar Reservas</a> -->
        
         {% if user.is_authenticated %}
-            <a href="{% url 'EditarUsuario' %}"><p>{{ user.username }}</p></a>
+                      
+            {% if url %}
+                <img height="50px" width="60px" src="{{ url }}" alt="Avatar">
+            {% endif %}
+
+            <a class="btn btn-outline-dark" href="{% url 'EditarUsuario' %}"><p>{{ user.username }}</p></a>
+          
             <a class="btn btn-dark" href= {% url 'Logout' %} >Cerrar Sesión</a>
         {% else %}
             <a class="btn btn-dark" href= {% url 'Login' %}  >Iniciar Sesión</a>
         {% endif %}
             
         
+       
+            
         
     </div>
 </nav>

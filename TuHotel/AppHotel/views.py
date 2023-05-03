@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Cliente, Habitacion, Empleado
+from .models import Cliente, Habitacion, Empleado, Avatar
 from django.http import HttpResponse
 from AppHotel.forms import RegistroCliente, UserEditForm
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
@@ -11,9 +11,17 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 
 
-def inicio(self):
 
-    return render(self, 'inicio.html')
+def inicio(self):
+    try: 
+        avatar = Avatar.objects.get(user=self.user.id)
+        return render(self, 'inicio.html', {'url': avatar.imagen.url })
+    except:
+        return render(self, 'inicio.html')
+
+       
+    
+  
 
 
 @login_required
@@ -162,15 +170,18 @@ def editar_cliente(request, id):
 #         return render(request,'registro_empleado.html', {'miFormulario': miFormulario})
 
 
+def lista_reservas(self):
+
+    return render(self, 'lista_reservas.html')
 
 def registro_reserva(self):
 
     return render(self, 'registro_reserva.html')
 
 
-def ver_reservas(self):
+def buscar_reservas(self):
 
-    return render(self, 'ver_reservas.html')
+    return render(self, 'buscar_reservas.html')
 
 
 

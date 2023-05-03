@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_cambio %}
+    <h2>Reservas</h2>
+
+    <h6>
+        Aquí podrás crear nuevas reservas o buscar una que tengas cargada
+    </h6>
+
+    <h5>
+       {{ mensaje }} 
+    </h5>
+
+    <a href="{% url 'RegistroReservas' %}">
+        <button>Registrar Nueva</button>
+    </a>
+
+    <a href="{% url 'BuscarReservas' %}">
+        <button>Buscar</button>
+    </a>    
+
+            
+{% endblock contenido_cambio %}
+    

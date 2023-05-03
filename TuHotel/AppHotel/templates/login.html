@@ -16,11 +16,19 @@
         <button type="submit">Iniciar Sesión</button>
         
     </form>
-    <button> <a href="{% url 'Registrar' %}">Crear Usuario</a></button>
+    
+        <a href="{% url 'Registrar' %}">
+            <button>Crear Usuario</button>
+        </a>
+    
 
     
     {% if user.is_authenticated %}
-    <button> <a href="{% url 'EditarUsuario' %}">Editar Usuario</a></button>
+    
+    <a href="{% url 'EditarUsuario' %}">
+        <button>Editar Usuario</button>
+    </a>
+    
     {% endif %}
         
     

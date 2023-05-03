@@ -5,9 +5,11 @@
 {% block contenido_cambio %}
     <h2>Lista de Habitaciones</h2>
 
-    <button>
-    <a href=" {% url 'CrearHabitacion' %} ">Crear Nueva</a>
-    </button>
+    
+    <a href=" {% url 'CrearHabitacion' %} ">
+        <button>Crear Nueva</button>
+    </a>
+    
 
     {% for habitacion in habitaciones  %}
         <li>
@@ -15,13 +17,16 @@
         </li>
         <div>
             
-            <button  type="submit"> 
-                <a href="{% url 'EliminarHabitacion' habitacion.id %}" method='POST'> Eliminar </a> 
-            </button>{% csrf_token %}
+            
+            <a href="{% url 'EliminarHabitacion' habitacion.id %}" method='POST'> 
+                <button  type="submit"> Eliminar</button>
+            </a>{% csrf_token %}
 
-            <button>
-                <a href="{% url 'EditarHabitacion' habitacion.id %}"> Editar </a>
-            </button>
+            
+            <a href="{% url 'EditarHabitacion' habitacion.id %}">
+                <button>Editar</button>
+            </a>
+            
 
         </div> 
 

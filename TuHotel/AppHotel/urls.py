@@ -8,7 +8,7 @@ urlpatterns = [
     path('busca-cliente/', busca_clientes, name = 'BuscaCliente'),
     path('cliente-buscado/', cliente_buscado, name = 'ClienteBuscado'),
     path('registro-reserva/', registro_reserva, name = 'RegistroReservas'),
-    path('ver-reservas/', ver_reservas, name = 'VerReservas'),
+    path('buscar-reservas/', buscar_reservas, name = 'BuscarReservas'),
     path('elimina-cliente/<int:id>', eliminar_cliente, name = 'EliminaCliente'),
     path('lista-cliente/', lista_clientes, name = 'ListaClientes'),
     path('editar-cliente/<int:id>', editar_cliente, name = 'EditarClientes'),
@@ -21,5 +21,6 @@ urlpatterns = [
     path('registrar/', registrar_usuario, name = 'Registrar'),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name = 'Logout'),
     path('editar-usuario/', editar_usuario, name = 'EditarUsuario'),
+    path('lista-reservas/', lista_reservas, name = 'ListaReservas'),
 
 ]

@@ -14,10 +14,19 @@
 
         {{ miFormulario.as_p }}
         
-        <button type="submit">Enviar</button>
+        
+        {% if registro_exitoso %}
 
+        {% else %}
+            <button type="submit">Enviar</button>
+        {% endif %}     
 
     </form>
+
+    <a href="{% url 'ListaClientes' %}">
+        <button>Atrás</button>
+    </a>
+
     
 {% endblock contenido_cambio %}
     
