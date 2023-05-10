@@ -10,7 +10,7 @@
         {{ registro_fallido }}
     </h4>
 
-    <form action="{% url 'RegistroClientes' %}" method="POST"> {% csrf_token %}
+    <form class="d-inline" action="{% url 'RegistroClientes' %}" method="POST"> {% csrf_token %}
 
         {{ miFormulario.as_p }}
         
@@ -18,13 +18,13 @@
         {% if registro_exitoso %}
 
         {% else %}
-            <button type="submit">Enviar</button>
+            <button class="bg-dark text-white" type="submit">Enviar</button>
         {% endif %}     
 
     </form>
 
     <a href="{% url 'ListaClientes' %}">
-        <button>Atrás</button>
+        <button  class="bg-dark text-white">Atrás</button>
     </a>
 
     

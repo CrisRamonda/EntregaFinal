@@ -3,34 +3,62 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Lista de Habitaciones</h2>
+    <div class="mx-auto my-5 p-3" style="width: 500px;">
+        <div >
+            <h2 class="text-center">Lista de Habitaciones</h2>
 
-    
-    <a href=" {% url 'CrearHabitacion' %} ">
-        <button>Crear Nueva</button>
-    </a>
-    
-
-    {% for habitacion in habitaciones  %}
-        <li>
-            <a href="{% url 'DetalleHabitacion' habitacion.id %}">Habitación {{ habitacion.numero }} </a>
-        </li>
-        <div>
-            
-            
-            <a href="{% url 'EliminarHabitacion' habitacion.id %}" method='POST'> 
-                <button  type="submit"> Eliminar</button>
-            </a>{% csrf_token %}
-
-            
-            <a href="{% url 'EditarHabitacion' habitacion.id %}">
-                <button>Editar</button>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href=" {% url 'CrearHabitacion' %} ">
+                <button class="btn btn-light">Crear Nueva</button>
             </a>
-            
+        </div>
+        
+    </div>
+    
+    
+    <div class="container text-center" >
+        <div class="card-group ">
+            {% for habitacion in habitaciones  %}
+                
+                    <div class="card mx-3">
+                        <a href="{% url 'DetalleHabitacion' habitacion.id %}" >
+                            <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" 
+                            alt="Imagen de la habitacion" 
+                            class="card-image-top my-3"
+                            style="width: 80%;">
+                        </a>
+                        
 
-        </div> 
 
-    {% endfor %} 
+
+                            <div class="card-body">
+                            
+                                <h5  class="card-title">Habitación {{ habitacion.numero }}</h5>
+                                
+
+                                    <a style="text-decoration: none; outline: none;" 
+                                    href="{% url 'EliminarHabitacion' habitacion.id %}" 
+                                    method='POST'> 
+                                        <button class="btn btn-light" type="submit"> Eliminar</button>
+                                    </a>{% csrf_token %}
+                                
+                                
+                                    <a href="{% url 'EditarHabitacion' habitacion.id %}">
+                                        <button class="btn btn-light">Editar</button>
+                                    </a>
+                                
+                            </div> 
+
+
+                                                  
+                    </div>
+                
+            {% endfor %} 
+        </div>
+    </div>
+
 
 {% endblock contenido_cambio %}
     

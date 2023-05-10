@@ -20,7 +20,12 @@ def inicio(self):
         return render(self, 'inicio.html')
 
        
-    
+def about(self):
+    try: 
+        avatar = Avatar.objects.get(user=self.user.id)
+        return render(self, 'about.html', {'url': avatar.imagen.url })
+    except:
+        return render(self, 'about.html')   
   
 
 
@@ -239,7 +244,7 @@ def login_usuario(request):
             if user:
                 login(request, user)
 
-                return render(request, 'login.html', {'mensaje': f'Bienvenido {usuario}' , 'miFormulario': miFormulario})
+                return render(request, 'login.html', {'mensaje': f'¡Bienvenido {usuario}!' , 'miFormulario': miFormulario})
 
         else:
             return render(request, 'login.html', {'mensaje' : f'Datos de ingreso incorrectos', 'miFormulario': miFormulario})

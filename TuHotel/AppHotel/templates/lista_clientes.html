@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Lista de Clientes</h2>
+    <h2 class="mx-auto my-5 p-3">Lista de Clientes</h2>
 
     <h5>
         {{ mensaje }}
@@ -12,36 +12,49 @@
         {{ edicion_fallida }}
     </h5>
 
+    <div>
+        <a style="text-decoration: none; outline: none;" href="{% url 'RegistroClientes'  %}">
+            <button class="btn btn-light">Registrar Cliente</button>
+        </a> 
+        
+        <a href="{% url 'BuscaCliente'  %}">
+            <button class="btn btn-light">Buscar Cliente</button>
+        </a> 
+    </div>
+    <br>
+        <div class="container">
+            <div class="card-group">
+                {% for cliente in lista_clientes  %}
+                    
+                        <div class="card mx-3">
+                            <div class="mt-3 mx-1">
+                                <h4 class="mt-2">
+                                    {{cliente.nombre}}
+                                </h4>
+                                
+                                <div class="card-body">
+                                    
+                                    <form class="" action= "{% url 'EliminaCliente' cliente.id %}" method='POST'>{% csrf_token %}
+                                    
+                                        <div class="d-flex justify-content-center">
+                                            <a class="mt-auto" href="{% url 'EditarClientes' cliente.id %}">
+                                                <button type="button" class="btn btn-light">Editar</button>
+                                            </a>
     
-    <a href="{% url 'RegistroClientes'  %}">
-        <button>Registrar Cliente</button>
-    </a> 
-    
-    <a href="{% url 'BuscaCliente'  %}">
-        <button>Buscar Cliente</button>
-    </a> 
-    
-
-     {% for cliente in lista_clientes  %}
-        <li>
-            {{cliente.nombre}}
-        </li>
-        <div>
-            <form  action= "{% url 'EliminaCliente' cliente.id %}" method='POST'>{% csrf_token %}
-                <button  type="submit"> 
-                    Eliminar 
-                </button>
-            </form>
-
-            
-            <a href="{% url 'EditarClientes' cliente.id %}">
-                <button>Editar</button>
-            </a>
-            
-
+                                            <button class="btn btn-light mt-auto"  type="submit"> 
+                                                Eliminar 
+                                            </button>
+                                        </div>
+                                    </form>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+                {% endfor %} 
+            </div>
         </div>
-
-    {% endfor %} 
-
+        
 {% endblock contenido_cambio %}
     

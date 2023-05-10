@@ -3,25 +3,37 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Crear nueva habitación</h2>
+    <h2 class="mx-auto my-5 p-3">Crear nueva habitación</h2>
 
     {% comment %} <h4>
         {{ registro_exitoso }}
         {{ registro_fallido }}
     </h4> {% endcomment %}
-
-    <form action="{% url 'CrearHabitacion' %}" method="POST"> {% csrf_token %}
-
-        {{ form.as_p }}
-        
-        <button type="submit">Enviar</button>
-
-
-    </form>
     
-    <a href="{% url 'ListaHabitacion' %}">
-        <button>Atrás</button>
-    </a>
+    <div class="">
+        <form action="{% url 'CrearHabitacion' %}" method="POST"> {% csrf_token %}
+
+            {{ form.as_p }}
+            
+            <div class="mt-3">
+                <button class="btn btn-light" type="submit">Enviar</button>
+            
+                <a href="{% url 'ListaHabitacion' %}">
+                    <button type="button" class="btn btn-light ms-auto">Atrás</button>
+                </a>
+            </div>
+            
+        </form>
+    </div>
+    
+    
+    
+        
+    
+    
+    
+    
+    
     
     
     

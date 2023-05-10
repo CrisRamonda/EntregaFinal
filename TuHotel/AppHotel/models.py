@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 class Habitacion(models.Model):
     numero = models.IntegerField()
     tipo = models.CharField(max_length=30)
-    disponible = models.BooleanField()   
+    disponible = models.BooleanField()
+       
 
     def __str__(self):
         return f'{self.numero}'    

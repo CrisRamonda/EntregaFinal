@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Eliminar Habitación</h2>
+    <h2 class="mx-auto my-5 p-3">Eliminar Habitación</h2>
 
     <p>
         ¿Confirma que desea eliminar la habitación {{ habitacion.numero }}?
@@ -13,14 +13,16 @@
 
         {{ form.as_p }}
 
-        <button type='submit'>
+        <button class="btn btn-light" type='submit'>
             Confirmar
         </button>
+
+        <a href="{% url 'ListaHabitacion' %}">
+            <button type="button" class="btn btn-light">Cancelar</button>
+        </a>  
                     
     </form>
-    <a href="{% url 'ListaHabitacion' %}">
-        <button>Cancelar</button>
-    </a>    
+      
 
 {% endblock contenido_cambio %}
     

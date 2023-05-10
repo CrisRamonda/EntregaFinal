@@ -3,23 +3,24 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2> Crear Nuevo Usuario </h2>
+    <h2 class="mx-auto my-5 p-3"> Crear Nuevo Usuario </h2>
 
     <h6>
         {{ mensaje }}
     </h6> 
-
+    
     <form action="" method="POST"> {% csrf_token %}
 
         {{ miFormulario.as_p }}
         
-        <button type="submit">Crear Usuario</button>
+        <button class="btn btn-light ms-auto" type="submit">Crear Usuario</button>
 
+        <a href="{% url 'Login' %}">
+            <button type="button" class="btn btn-light ms-auto">Atrás</button>
+        </a>
 
     </form>
-    <a href="{% url 'Login' %}">
-        <button>Atrás</button>
-    </a>
+    
     
 {% endblock contenido_cambio %}
     

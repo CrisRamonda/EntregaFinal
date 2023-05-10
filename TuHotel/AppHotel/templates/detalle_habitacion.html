@@ -3,24 +3,26 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Detalle de la habitación</h2>
-    <p>Numero: {{ numero_habitacion.numero }} </p>
-    <p>Tipo: {{ numero_habitacion.tipo }} </p>
-    <p>Disponible: 
-    
-    
-    {% if numero_habitacion.disponible %}
-        Sí
-    {% else %}
-        No
-    {% endif %}
+    <h2 class="mx-auto my-5 p-3">Detalle de la habitación</h2>
+    <div>
+        <p>Numero: {{ numero_habitacion.numero }} </p>
+        <p>Tipo: {{ numero_habitacion.tipo }} </p>
+        <p>Disponible: 
         
-    </p>
-    
+        
+        {% if numero_habitacion.disponible %}
+            Sí
+        {% else %}
+            No
+        {% endif %}
+            
+        </p>
+    </div>
+       
 
     
     <a href= {% url 'ListaHabitacion' %}>
-        <button>Atrás</button>
+        <button class="btn btn-light ms-auto">Atrás</button>
     </a>
     
         

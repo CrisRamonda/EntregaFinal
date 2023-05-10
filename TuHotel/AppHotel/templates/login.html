@@ -3,33 +3,49 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2> Iniciar Sesión </h2>
+    
+    
+    {% if mensaje  %}
+        <h2 class="mx-auto my-5 p-3">
+            {{ mensaje }}
+        </h2>  
 
-    <h6>
-        {{ mensaje }}
-    </h6> 
+    {% else %}
+        <h2 class="mx-auto my-5 p-3"> Iniciar Sesión </h2>
+    {% endif %}
+        
+    
 
     <form action="" method="POST"> {% csrf_token %}
 
-        {{ miFormulario.as_p }}
+        {% if user.is_authenticated %}
+            <a style="text-decoration: none; outline: none;" href="{% url 'EditarUsuario' %}">
+                <button type="button" class="btn btn-light">Editar Usuario</button>
+            </a>
+            <a href="{% url 'Inicio' %}">
+                <button type="button" class="btn btn-light">Continuar</button>
+            </a>
+        {% else %}
+            {{ miFormulario.as_p }}
+
+            <button class="btn btn-light" type="submit">Iniciar Sesión</button>
+
+            <a href="{% url 'Registrar' %}">
+                <button type="button" class="btn btn-light">Crear Usuario</button>
+            </a>
+
         
-        <button type="submit">Iniciar Sesión</button>
-        
+            
+
+        {% endif %}
+
     </form>
     
-        <a href="{% url 'Registrar' %}">
-            <button>Crear Usuario</button>
-        </a>
+        
     
 
     
-    {% if user.is_authenticated %}
     
-    <a href="{% url 'EditarUsuario' %}">
-        <button>Editar Usuario</button>
-    </a>
-    
-    {% endif %}
         
     
 
