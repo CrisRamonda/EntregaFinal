@@ -5,7 +5,7 @@
 {% block contenido_cambio %}
     <h2 class="mx-auto my-5 p-3">Lista de Clientes</h2>
 
-    <h5>
+    <h5 class="my-5">
         {{ mensaje }}
 
         {{ edicion_exitosa }}
@@ -22,26 +22,28 @@
         </a> 
     </div>
     <br>
-        <div class="container">
-            <div class="card-group">
+        <div class="container text-center">
+            <div class="card-group mt-5">
                 {% for cliente in lista_clientes  %}
                     
                         <div class="card mx-3">
-                            <div class="mt-3 mx-1">
-                                <h4 class="mt-2">
-                                    {{cliente.nombre}}
-                                </h4>
+                            
+
                                 
-                                <div class="card-body">
+                                <div class="card-body ">
+
+                                    <h4 class="mt-4 card-title">
+                                        {{cliente.nombre}}
+                                    </h4>
                                     
-                                    <form class="" action= "{% url 'EliminaCliente' cliente.id %}" method='POST'>{% csrf_token %}
+                                    <form action= "{% url 'EliminaCliente' cliente.id %}" method='POST'>{% csrf_token %}
                                     
                                         <div class="d-flex justify-content-center">
-                                            <a class="mt-auto" href="{% url 'EditarClientes' cliente.id %}">
+                                            <a class="" href="{% url 'EditarClientes' cliente.id %}">
                                                 <button type="button" class="btn btn-light">Editar</button>
                                             </a>
     
-                                            <button class="btn btn-light mt-auto"  type="submit"> 
+                                            <button class="btn btn-light"  type="submit"> 
                                                 Eliminar 
                                             </button>
                                         </div>
@@ -49,7 +51,7 @@
                                     
                                     
                                 </div>
-                            </div>
+                            
                         </div>
                     
                 {% endfor %} 

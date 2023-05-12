@@ -10,6 +10,7 @@ class RegistroCliente(forms.Form):
     documento = forms.IntegerField()
     email = forms.EmailField()
 
+    
 
 # class RegistrarEmpleado(forms.ModelForm):
 
@@ -36,3 +37,6 @@ class UserEditForm(UserChangeForm):
         if password2 != self.cleaned_data['password1']:
             raise forms.ValidationError('Las contraseñas no coinciden')
         return password2
+    
+
+        

@@ -3,19 +3,19 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Busqueda de Clientes</h2>
+    <h2 class="mx-auto my-5 p-3">Busqueda de Clientes</h2>
     
     <form class="d-inline" action="{% url 'ClienteBuscado' %}" method="GET"> {% csrf_token %}
 
         <p>Nombre: <input type="text" name = 'nombre' id='nombre'> </p>
         
-        <button class="bg-dark text-white" type="submit">Buscar</button>
+        <button class="btn btn-light ms-auto my-3" type="submit">Buscar</button>
    
     </form>
 
     
     <a href="{% url 'ListaClientes' %}">
-        <button class="bg-dark text-white">Atrás</button>
+        <button class="btn btn-light ms-auto">Atrás</button>
     </a>
     
     

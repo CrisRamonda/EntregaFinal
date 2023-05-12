@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Reservas</h2>
+    <h2 class="mx-auto my-5 p-3">Reservas</h2>
 
     <h6>
         Aquí podrás crear nuevas reservas o buscar una que tengas cargada
@@ -12,13 +12,13 @@
     <h5>
        {{ mensaje }} 
     </h5>
-
-    <a href="{% url 'RegistroReservas' %}">
-        <button>Registrar Nueva</button>
+    
+    <a class="text-decoration-none outline-none" href="{% url 'RegistroReservas' %}">
+        <button class="btn btn-light my-3">Registrar Nueva</button>
     </a>
 
     <a href="{% url 'BuscarReservas' %}">
-        <button>Buscar</button>
+        <button class="btn btn-light">Buscar</button>
     </a>    
 
             

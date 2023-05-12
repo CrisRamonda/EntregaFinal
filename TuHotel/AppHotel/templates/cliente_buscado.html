@@ -9,10 +9,10 @@
    
     {% if cliente %}
 
-    <h2>Los datos del cliente que buscaste: </h2>
-        <p>Nombre: {{ cliente.nombre }}</p>   
-        <p>Documento: {{ cliente.documento }}</p>   
-        <p>Email: {{ cliente.email }}</p>
+    <h2 class="mx-auto my-5 p-3">Los datos del cliente que buscaste: </h2>
+        <p><b>Nombre: </b>{{ cliente.nombre }}</p>   
+        <p><b>Documento: </b> {{ cliente.documento }}</p>   
+        <p><b>Email: </b> {{ cliente.email }}</p>
     
     {% else %}
 
@@ -21,8 +21,8 @@
     {% endif %}
 
 
-    <a href="{% url 'BuscaCliente' %}">
-        <button>Atrás</button>
+    <a  href="{% url 'BuscaCliente' %}">
+        <button class="btn btn-light ms-auto my-3" >Atrás</button>
     </a>
     
        

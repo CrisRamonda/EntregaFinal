@@ -8,35 +8,47 @@
     {% if mensaje  %}
         <h2 class="mx-auto my-5 p-3">
             {{ mensaje }}
-        </h2>  
+        </h2>
+        <h6 class="mb-2">
+            {{ mensaje2 }}
+        </h6>  
 
     {% else %}
         <h2 class="mx-auto my-5 p-3"> Iniciar Sesión </h2>
     {% endif %}
         
     
-
-    <form action="" method="POST"> {% csrf_token %}
+    
+    <form  class="mx-auto" style="width: 20%;" action="" method="POST"> {% csrf_token %}
 
         {% if user.is_authenticated %}
             <a style="text-decoration: none; outline: none;" href="{% url 'EditarUsuario' %}">
-                <button type="button" class="btn btn-light">Editar Usuario</button>
+                <button type="button" class="btn btn-light my-3">Editar Usuario</button>
             </a>
             <a href="{% url 'Inicio' %}">
                 <button type="button" class="btn btn-light">Continuar</button>
             </a>
         {% else %}
-            {{ miFormulario.as_p }}
-
-            <button class="btn btn-light" type="submit">Iniciar Sesión</button>
-
+        
+            <div class="form-group mb-2">
+                {{ miFormulario.username.label_tag }}
+                {{ miFormulario.username }}
+            </div>
+            <div class="form-group mb-1">
+                {{ miFormulario.password.label_tag }}
+                {{ miFormulario.password }}
+            </div>
+            
+            <!-- {{ miFormulario.as_p }} -->
+                    
+           
+            <button class="btn btn-light my-3" type="submit">Iniciar Sesión</button>
             <a href="{% url 'Registrar' %}">
                 <button type="button" class="btn btn-light">Crear Usuario</button>
             </a>
-
-        
             
-
+            
+        
         {% endif %}
 
     </form>

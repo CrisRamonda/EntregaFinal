@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2>Registro de clientes</h2>
+    <h2 class="mx-auto my-5 p-3">Registro de clientes</h2>
 
-    <h4>
+    <h4 class="my-5">
         {{ registro_exitoso }}
         {{ registro_fallido }}
     </h4>
@@ -18,13 +18,13 @@
         {% if registro_exitoso %}
 
         {% else %}
-            <button class="bg-dark text-white" type="submit">Enviar</button>
+            <button class="btn btn-light my-3" type="submit">Enviar</button>
         {% endif %}     
 
     </form>
 
     <a href="{% url 'ListaClientes' %}">
-        <button  class="bg-dark text-white">Atrás</button>
+        <button  class="btn btn-light">Atrás</button>
     </a>
 
     

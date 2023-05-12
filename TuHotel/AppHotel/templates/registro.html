@@ -3,23 +3,47 @@
 {% load static %}
 
 {% block contenido_cambio %}
-    <h2 class="mx-auto my-5 p-3"> Crear Nuevo Usuario </h2>
-
-    <h6>
-        {{ mensaje }}
-    </h6> 
+ 
     
-    <form action="" method="POST"> {% csrf_token %}
+    {% if mensaje1 %}
+        <h2 class="mx-auto my-5 p-3"> {{ mensaje1 }} </h2>
+    
+        <div class="my-3">
+            <a href="{% url 'Login' %}">
+                <button type="button" class="btn btn-light">Iniciar Sesión</button>
+            </a>
+        </div>
 
-        {{ miFormulario.as_p }}
+    {% else %}
+        <h2 class="mx-auto my-5 p-3"> Crear Nuevo Usuario </h2>
+
+        <form class="mx-auto" style="width: 20%;" action="" method="POST"> {% csrf_token %}
+
+
+            <div class="form-group mb-2">
+                {{ miFormulario.username.label_tag }}
+                {{ miFormulario.username }}
+            </div>
+            <div class="form-group mb-2">
+                {{ miFormulario.password1.label_tag }}
+                {{ miFormulario.password1 }}
+            </div>
+            <div class="form-group mb-1">
+                {{ miFormulario.password2.label_tag }}
+                {{ miFormulario.password2 }}
+            </div>
+            <!-- {{ miFormulario.as_p }} -->
+
+            <button class="btn btn-light my-3" type="submit">Crear Usuario</button>
+
+            <a href="{% url 'Login' %}">
+                <button type="button" class="btn btn-light">Atrás</button>
+            </a>
+
+        </form>
+    {% endif %}
         
-        <button class="btn btn-light ms-auto" type="submit">Crear Usuario</button>
 
-        <a href="{% url 'Login' %}">
-            <button type="button" class="btn btn-light ms-auto">Atrás</button>
-        </a>
-
-    </form>
     
     
 {% endblock contenido_cambio %}

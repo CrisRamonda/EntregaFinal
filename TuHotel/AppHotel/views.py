@@ -125,7 +125,7 @@ def editar_cliente(request, id):
 
             lista_clientes = Cliente.objects.all()
 
-            return render(request, 'lista_clientes.html', {'edicion_exitosa': 'Edición realizada con éxito' , "lista_clientes":lista_clientes})
+            return render(request, 'lista_clientes.html', {'edicion_exitosa': '¡Edición realizada con éxito!' , "lista_clientes":lista_clientes})
 
         else:
             
@@ -232,6 +232,11 @@ def login_usuario(request):
     if request.method == 'POST':
 
         miFormulario = AuthenticationForm(request, data=request.POST)
+        miFormulario.fields['username'].label = 'Usuario'
+        miFormulario.fields['password'].label = 'Contraseña'
+
+        miFormulario.fields['username'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['password'].widget.attrs.update({'class': 'form-control'})
 
         if miFormulario.is_valid():
 
@@ -244,13 +249,19 @@ def login_usuario(request):
             if user:
                 login(request, user)
 
-                return render(request, 'login.html', {'mensaje': f'¡Bienvenido {usuario}!' , 'miFormulario': miFormulario})
+                return render(request, 'login.html', {'mensaje': f'¡Bienvenido {usuario}!',  'miFormulario': miFormulario})
 
         else:
-            return render(request, 'login.html', {'mensaje' : f'Datos de ingreso incorrectos', 'miFormulario': miFormulario})
+            return render(request, 'login.html', {'mensaje' : f'Datos de ingreso incorrectos','mensaje2': f'Intente nuevamente' , 'miFormulario': miFormulario})
     
     else:
         miFormulario = AuthenticationForm()
+        miFormulario.fields['username'].label = 'Usuario'
+        miFormulario.fields['password'].label = 'Contraseña'
+
+        miFormulario.fields['username'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['password'].widget.attrs.update({'class': 'form-control'})
+
         return render(request,'login.html', {'miFormulario': miFormulario})
     
 
@@ -259,7 +270,15 @@ def registrar_usuario(request):
     
     if request.method == 'POST':
 
-        miFormulario = UserCreationForm(data=request.POST)
+        miFormulario = UserCreationForm(request.POST)
+        miFormulario.fields['username'].label = 'Usuario'
+        miFormulario.fields['password1'].label = 'Contraseña'
+        miFormulario.fields['password2'].label = 'Repetir Contraseña'
+
+        miFormulario.fields['username'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['password1'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['password2'].widget.attrs.update({'class': 'form-control'})
+
 
         if miFormulario.is_valid():
 
@@ -267,14 +286,25 @@ def registrar_usuario(request):
             usuario = data['username']
             #contrasena = data['password']
             miFormulario.save()
-            return render(request, 'registro.html', {'mensaje': f'Usuario {usuario} creado!', 'miFormulario': miFormulario})
+            return render(request, 'registro.html', {'mensaje1': f'¡Usuario {usuario} creado!', 'miFormulario': miFormulario})
 
 
         else:
-            return render(request, 'registro.html', {'mensaje' : f'¡Datos de ingreso incorrectos!', 'miFormulario': miFormulario})
+            
+            
+            return render(request, 'registro.html', {'mensaje2' : f'¡Datos de registro incorrectos! Intente nuevamente', 'miFormulario': miFormulario})
     
     else:
         miFormulario = UserCreationForm()
+        miFormulario.fields['username'].label = 'Usuario'
+        miFormulario.fields['password1'].label = 'Contraseña'
+        miFormulario.fields['password2'].label = 'Repetir Contraseña'
+
+        miFormulario.fields['username'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['password1'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['password2'].widget.attrs.update({'class': 'form-control'})
+
+
         return render(request,'registro.html', {'miFormulario': miFormulario})
     
 
@@ -286,6 +316,16 @@ def editar_usuario(request):
     if request.method == 'POST':
 
         miFormulario = UserEditForm(request.POST, instance=request.user)
+        miFormulario.fields['first_name'].label = 'Nombre'
+        miFormulario.fields['last_name'].label = 'Apellido'
+        miFormulario.fields['email'].label = 'E-Mail'
+
+
+        miFormulario.fields['first_name'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['last_name'].widget.attrs.update({'class': 'form-control'})        
+        miFormulario.fields['email'].widget.attrs.update({'class': 'form-control'})        
+        miFormulario.fields['password1'].widget.attrs.update({'class': 'form-control'})        
+        miFormulario.fields['password2'].widget.attrs.update({'class': 'form-control'})        
 
         if miFormulario.is_valid():
 
@@ -305,6 +345,16 @@ def editar_usuario(request):
      
     else:
         miFormulario = UserEditForm(instance=request.user)
+        miFormulario.fields['first_name'].label = 'Nombre'
+        miFormulario.fields['last_name'].label = 'Apellido'
+        miFormulario.fields['email'].label = 'E-Mail'
+
+        miFormulario.fields['first_name'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['last_name'].widget.attrs.update({'class': 'form-control'})        
+        miFormulario.fields['email'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['password1'].widget.attrs.update({'class': 'form-control'})        
+        miFormulario.fields['password2'].widget.attrs.update({'class': 'form-control'})
+
         return render(request,'editar_usuario.html', {'miFormulario': miFormulario})
 
 
