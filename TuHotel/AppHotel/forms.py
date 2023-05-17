@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from .models import Empleado
+from django.contrib.auth.forms import (AuthenticationForm, UserChangeForm,UserCreationForm)
 from django.contrib.auth.models import User
+from .models import Empleado
 
 
 class RegistroCliente(forms.Form):
@@ -30,12 +30,12 @@ class UserEditForm(UserChangeForm):
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repetir Contraseña', widget=forms.PasswordInput)
 
-    def clean_password1(self):
-
+    def clean_password2(self):
         password2 = self.cleaned_data['password2']
-        
+
         if password2 != self.cleaned_data['password1']:
             raise forms.ValidationError('Las contraseñas no coinciden')
+
         return password2
     
 

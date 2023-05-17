@@ -23,5 +23,6 @@ urlpatterns = [
     path('editar-usuario/', editar_usuario, name = 'EditarUsuario'),
     path('lista-reservas/', lista_reservas, name = 'ListaReservas'),
     path('about/', about, name = 'About'),
+    path('en-construccion/', en_construccion, name = 'EnConstruccion'),
 
 ]
