@@ -6,9 +6,21 @@
     <h2 class="mx-auto my-5 p-3">Edición de Habitaciones</h2>
 
    
-    <form action="{% url 'EditarHabitacion' habitacion.id %}" method="POST"> {% csrf_token %}
+    <form class="mx-auto" style="width: 20%;" action="{% url 'EditarHabitacion' habitacion.id %}" method="POST"> {% csrf_token %}
 
-        {{ form.as_p }}
+        <div class="form-group mb-2">
+            {{form.numero.label_tag}} 
+            {{ form.numero }}
+        </div>
+        <div class="form-group mb-2">
+            {{form.tipo.label_tag}} 
+            {{ form.tipo }}
+        </div>
+        <div class="form-group mb-2">
+            {{form.disponible.label_tag}} 
+            {{ form.disponible }}
+        </div>
+        <!-- {{ form.as_p }} -->
 
         <button class="btn btn-light ms-auto my-3" type='submit'>
             Actualizar

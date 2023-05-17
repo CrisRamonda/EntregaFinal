@@ -35,6 +35,13 @@ def registro_cliente(request):
     if request.method == 'POST':
 
         miFormulario = RegistroCliente(request.POST)
+        miFormulario.fields['nombre'].label = 'Nombre'
+        miFormulario.fields['documento'].label = 'Documento'
+        miFormulario.fields['email'].label = 'E-Mail'
+
+        miFormulario.fields['nombre'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['documento'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['email'].widget.attrs.update({'class': 'form-control'})
 
         if miFormulario.is_valid():
 
@@ -46,23 +53,57 @@ def registro_cliente(request):
                 email = data['email']
             )
             cliente.save()
-            return render(request, 'registro_cliente.html', {'registro_exitoso': 'Registro realizado con éxito'})
 
-        else:       
-            return render(request, 'registro_cliente.html', {'registro_fallido': 'Datos del formulario inválidos'})
+
+            try: 
+                avatar = Avatar.objects.get(user=request.user.id)
+                return render(request, 'registro_cliente.html', {'registro_exitoso': 'Registro realizado con éxito' , 'url': avatar.imagen.url })
+            except:
+                return render(request, 'registro_cliente.html', {'registro_exitoso': 'Registro realizado con éxito'} ) 
+
+                       
+
+
+        else:  
+            try: 
+                avatar = Avatar.objects.get(user=request.user.id)
+                return render(request, 'registro_cliente.html', {'registro_fallido': 'Datos del formulario inválidos' , 'url': avatar.imagen.url })
+            except:
+                return render(request, 'registro_cliente.html', {'registro_fallido': 'Datos del formulario inválidos'} ) 
+
+
     
     else:
         
-        miFormulario = RegistroCliente()       
-        return render(request,'registro_cliente.html', {'miFormulario': miFormulario})
+        miFormulario = RegistroCliente()
+
+        miFormulario.fields['nombre'].label = 'Nombre'
+        miFormulario.fields['documento'].label = 'Documento'
+        miFormulario.fields['email'].label = 'E-Mail'
+
+        miFormulario.fields['nombre'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['documento'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['email'].widget.attrs.update({'class': 'form-control'})
+
+        try: 
+            avatar = Avatar.objects.get(user=request.user.id)
+            return render(request, 'registro_cliente.html', {'miFormulario': miFormulario , 'url': avatar.imagen.url })
+        except:
+            return render(request, 'registro_cliente.html', {'miFormulario': miFormulario} )
+        
+
+               
     
 
 
 @login_required
 def busca_clientes(request):
-
+    try: 
+        avatar = Avatar.objects.get(user=request.user.id)
+        return render(request, 'busca_clientes.html', {'url': avatar.imagen.url })
+    except:
+        return render(request, 'busca_clientes.html')
        
-    return render(request, 'busca_clientes.html')
 
 
 @login_required
@@ -73,13 +114,24 @@ def cliente_buscado(self):
         nombre_consulta = self.GET['nombre']
         cliente = Cliente.objects.filter(nombre=nombre_consulta).first()
 
-        return render(self, 'cliente_buscado.html', {"cliente":cliente})
+        try: 
+            avatar = Avatar.objects.get(user=self.user.id)
+            return render(self, 'cliente_buscado.html', {"cliente":cliente , 'url': avatar.imagen.url })
+        except:
+            return render(self, 'cliente_buscado.html', {"cliente":cliente})
+
 
     else: 
         mensaje = f'No se Ingresaron datos'
 
-        return render(self, 'cliente_buscado.html', {"mensaje":mensaje})
+        try: 
+            avatar = Avatar.objects.get(user=self.user.id)
+            return render(self, 'cliente_buscado.html', {"mensaje":mensaje , 'url': avatar.imagen.url })
+        except:
+            return render(self, 'cliente_buscado.html', {"mensaje":mensaje})
 
+
+        
 
 
 @login_required
@@ -94,15 +146,27 @@ def eliminar_cliente(self, id):
 
         lista_clientes = Cliente.objects.all()
 
-        return render(self, 'lista_clientes.html', {"mensaje":mensaje , "lista_clientes":lista_clientes})
+        try: 
+            avatar = Avatar.objects.get(user=self.user.id)
+            return render(self, 'lista_clientes.html', {"mensaje":mensaje , "lista_clientes":lista_clientes , 'url': avatar.imagen.url })
+        except:
+            return render(self, 'lista_clientes.html', {"mensaje":mensaje , "lista_clientes":lista_clientes})
+
+        
 
 
 @login_required
 def lista_clientes(request):
 
     lista_clientes = Cliente.objects.all()
+
+    try: 
+        avatar = Avatar.objects.get(user=request.user.id)
+        return render(request, 'lista_clientes.html', {"lista_clientes":lista_clientes , 'url': avatar.imagen.url })
+    except:
+        return render(request, 'lista_clientes.html', {"lista_clientes":lista_clientes})
        
-    return render(request, 'lista_clientes.html', {"lista_clientes":lista_clientes})
+    
 
 
 @login_required
@@ -113,6 +177,13 @@ def editar_cliente(request, id):
     if request.method == 'POST':
 
         miFormulario = RegistroCliente(request.POST)
+        miFormulario.fields['nombre'].label = 'Nombre'
+        miFormulario.fields['documento'].label = 'Documento'
+        miFormulario.fields['email'].label = 'E-Mail'
+
+        miFormulario.fields['nombre'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['documento'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['email'].widget.attrs.update({'class': 'form-control'})
 
         if miFormulario.is_valid():
 
@@ -125,13 +196,23 @@ def editar_cliente(request, id):
 
             lista_clientes = Cliente.objects.all()
 
-            return render(request, 'lista_clientes.html', {'edicion_exitosa': '¡Edición realizada con éxito!' , "lista_clientes":lista_clientes})
+            try: 
+                avatar = Avatar.objects.get(user=request.user.id)
+                return render(request, 'lista_clientes.html', {'edicion_exitosa': '¡Edición realizada con éxito!' , "lista_clientes":lista_clientes , 'url': avatar.imagen.url })
+            except:
+                return render(request, 'lista_clientes.html', {'edicion_exitosa': '¡Edición realizada con éxito!' , "lista_clientes":lista_clientes})
+
 
         else:
             
             lista_clientes = Cliente.objects.all()
 
-            return render(request, 'lista_clientes.html', {'edicion_fallida': 'Datos del formulario inválidos' , "lista_clientes":lista_clientes})
+            try: 
+                avatar = Avatar.objects.get(user=request.user.id)
+                return render(request, 'lista_clientes.html', {'edicion_fallida': 'Datos del formulario inválidos' , "lista_clientes":lista_clientes , 'url': avatar.imagen.url })
+            except:
+                return render(request, 'lista_clientes.html', {'edicion_fallida': 'Datos del formulario inválidos' , "lista_clientes":lista_clientes})
+
      
     else:
         
@@ -141,8 +222,21 @@ def editar_cliente(request, id):
             'email' : cliente.email
             
         })
+
+        miFormulario.fields['nombre'].label = 'Nombre'
+        miFormulario.fields['documento'].label = 'Documento'
+        miFormulario.fields['email'].label = 'E-Mail'
+
+        miFormulario.fields['nombre'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['documento'].widget.attrs.update({'class': 'form-control'})
+        miFormulario.fields['email'].widget.attrs.update({'class': 'form-control'})
+
+        try: 
+            avatar = Avatar.objects.get(user=request.user.id)
+            return render(request, 'editar_cliente.html', {'miFormulario': miFormulario, 'id' : cliente.id , 'url': avatar.imagen.url })
+        except:
+            return render(request,'editar_cliente.html', {'miFormulario': miFormulario, 'id' : cliente.id})
         
-        return render(request,'editar_cliente.html', {'miFormulario': miFormulario, 'id' : cliente.id})
 
 
 
@@ -176,17 +270,30 @@ def editar_cliente(request, id):
 
 
 def lista_reservas(self):
+    try: 
+        avatar = Avatar.objects.get(user=self.user.id)
+        return render(self, 'lista_reservas.html', {'url': avatar.imagen.url })
+    except:
+        return render(self, 'lista_reservas.html')
 
-    return render(self, 'lista_reservas.html')
 
 def registro_reserva(self):
-
-    return render(self, 'registro_reserva.html')
+    try: 
+        avatar = Avatar.objects.get(user=self.user.id)
+        return render(self, 'registro_reserva.html', {'url': avatar.imagen.url })
+    except:
+        return render(self, 'registro_reserva.html')
+    
 
 
 def buscar_reservas(self):
+    try: 
+        avatar = Avatar.objects.get(user=self.user.id)
+        return render(self, 'buscar_reservas.html', {'url': avatar.imagen.url })
+    except:
+        return render(self, 'buscar_reservas.html')
 
-    return render(self, 'buscar_reservas.html')
+    
 
 
 
@@ -203,6 +310,14 @@ class HabitacionDetalle(LoginRequiredMixin, DetailView):
     template_name = 'detalle_habitacion.html'
     context_object_name = 'numero_habitacion'
 
+    #funcion para darle estética a los formularios basados en clases
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['numero'].widget.attrs.update({'class': 'form-control'})
+        form.fields['tipo'].widget.attrs.update({'class': 'form-control'})
+        form.fields['disponible'].widget.attrs.update({'class': 'form-check-input'})
+        return form
+
 
 class HabitacionCrear(LoginRequiredMixin, CreateView):
     model = Habitacion
@@ -211,12 +326,28 @@ class HabitacionCrear(LoginRequiredMixin, CreateView):
     fields = '__all__'
     success_url = '/apphotel/lista-habitaciones/'
 
+    #funcion para darle estética a los formularios basados en clases
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['numero'].widget.attrs.update({'class': 'form-control'})
+        form.fields['tipo'].widget.attrs.update({'class': 'form-control'})
+        form.fields['disponible'].widget.attrs.update({'class': 'form-check-input'})
+        return form
+
 
 class HabitacionEditar(LoginRequiredMixin, UpdateView):
     model = Habitacion
     template_name = 'editar_habitacion.html'
     fields = '__all__'
     success_url = '/apphotel/lista-habitaciones/'
+
+    #funcion para darle estética a los formularios basados en clases
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['numero'].widget.attrs.update({'class': 'form-control'})
+        form.fields['tipo'].widget.attrs.update({'class': 'form-control'})
+        form.fields['disponible'].widget.attrs.update({'class': 'form-check-input'})
+        return form
     
 
 
@@ -249,7 +380,13 @@ def login_usuario(request):
             if user:
                 login(request, user)
 
-                return render(request, 'login.html', {'mensaje': f'¡Bienvenido {usuario}!',  'miFormulario': miFormulario})
+                try: 
+                    avatar = Avatar.objects.get(user=request.user.id)
+                    return render(request, 'login.html', {'mensaje': f'¡Bienvenido {usuario}!',  'miFormulario': miFormulario ,'url': avatar.imagen.url })
+                except:
+                    return render(request, 'login.html', {'mensaje': f'¡Bienvenido {usuario}!',  'miFormulario': miFormulario})
+
+                
 
         else:
             return render(request, 'login.html', {'mensaje' : f'Datos de ingreso incorrectos','mensaje2': f'Intente nuevamente' , 'miFormulario': miFormulario})
@@ -338,10 +475,22 @@ def editar_usuario(request):
             usuario.set_password(data['password1'])
             usuario.save()
 
-            return render(request, 'editar_usuario.html', {'edicion_exitosa': 'Edición realizada con éxito' })
+            try: 
+                avatar = Avatar.objects.get(user=request.user.id)
+                return render(request, 'editar_usuario.html', {'edicion_exitosa': 'Edición realizada con éxito','url': avatar.imagen.url })
+            except:
+                return render(request, 'editar_usuario.html', {'edicion_exitosa': 'Edición realizada con éxito' })
+
+            
 
         else:
-            return render(request, 'editar_usuario.html', {'edicion_fallida': 'Datos del formulario inválidos', 'miFormulario': miFormulario})
+
+            try: 
+                avatar = Avatar.objects.get(user=request.user.id)
+                return render(request, 'editar_usuario.html', {'edicion_fallida': 'Datos del formulario inválidos', 'miFormulario': miFormulario,'url': avatar.imagen.url })
+            except:
+                return render(request, 'editar_usuario.html', {'edicion_fallida': 'Datos del formulario inválidos', 'miFormulario': miFormulario})
+            
      
     else:
         miFormulario = UserEditForm(instance=request.user)
@@ -355,9 +504,15 @@ def editar_usuario(request):
         miFormulario.fields['password1'].widget.attrs.update({'class': 'form-control'})        
         miFormulario.fields['password2'].widget.attrs.update({'class': 'form-control'})
 
-        return render(request,'editar_usuario.html', {'miFormulario': miFormulario})
+        try: 
+            avatar = Avatar.objects.get(user=request.user.id)
+            return render(request, 'editar_usuario.html', {'miFormulario': miFormulario,'url': avatar.imagen.url })
+        except:
+            return render(request,'editar_usuario.html', {'miFormulario': miFormulario})
 
 
+
+       
     
 
 

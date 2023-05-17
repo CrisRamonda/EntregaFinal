@@ -10,7 +10,7 @@
         {{ registro_fallido }}
     </h4>
 
-    <form class="d-inline" action="{% url 'RegistroClientes' %}" method="POST"> {% csrf_token %}
+    <form class="mx-auto" style="width: 20%;" action="{% url 'RegistroClientes' %}" method="POST"> {% csrf_token %}
 
         {{ miFormulario.as_p }}
         
@@ -21,11 +21,13 @@
             <button class="btn btn-light my-3" type="submit">Enviar</button>
         {% endif %}     
 
+        <a href="{% url 'ListaClientes' %}">
+            <button type="button" class="btn btn-light">Atrás</button>
+        </a>
+
     </form>
 
-    <a href="{% url 'ListaClientes' %}">
-        <button  class="btn btn-light">Atrás</button>
-    </a>
+
 
     
 {% endblock contenido_cambio %}
