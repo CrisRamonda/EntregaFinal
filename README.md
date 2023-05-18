@@ -1,8 +1,11 @@
 # EntregaFinal
 Entrega Final de Coder
 
-El link de ingreso es:
-http://127.0.0.1:8000/apphotel/
-
 VIDEO DEMO:
 https://drive.google.com/file/d/1fgKaJiPQCA8HJfS9Hxs02pfdxbCYb4cw/view?usp=sharing
+
+PRUEBAS QA:
+https://docs.google.com/spreadsheets/d/1OoC1YQsR0KxaaQsrr9Hr7WbM-p1Bxw0ZyP2HMxNqnw4/edit?usp=sharing
+
+El link de ingreso es:
+http://127.0.0.1:8000/apphotel/
