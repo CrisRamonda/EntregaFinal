@@ -20,11 +20,10 @@ class RegistroCliente(forms.Form):
 
 
 class UserEditForm(UserChangeForm):
-    
+
     class Meta:
         model = User
-        fields = {'first_name','last_name' , 'email', 'password1', 'password2'}
-
+        fields = ('first_name','last_name' , 'email', 'password1', 'password2')
 
     #agregamos campos que no son del modelo en sí
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
